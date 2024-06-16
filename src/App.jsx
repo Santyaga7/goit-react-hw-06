@@ -1,8 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import ContactForm from './ContactForm';
-import SearchBox from './SearchBox';
-import ContactList from './ContactList';
-import { selectContacts, selectNameFilter, addContact, deleteContact, changeFilter } from './redux/contactsSlice';
+import { useDispatch, useSelector } from "react-redux";
+import ContactForm from "./components/ContactForm/ContactForm";
+import ContactList from "./components/ContactList/ContactList";
+import SearchBox from "./components/SearchBox/SearchBox";
+import { addContact, deleteContact, selectContacts } from "./redux/contactsSlice";
+import { changeFilter, selectNameFilter } from "./redux/filtersSlice";
 
 const App = () => {
   const contacts = useSelector(selectContacts);
@@ -21,8 +22,8 @@ const App = () => {
     dispatch(deleteContact(contactId));
   };
 
-  const handleFilterChange = (newFilter) => {
-    dispatch(changeFilter(newFilter));
+  const handleFilterChange = (filter) => {
+    dispatch(changeFilter(filter));
   };
 
   return (
