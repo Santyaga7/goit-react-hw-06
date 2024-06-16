@@ -6,10 +6,14 @@ import css from './ContactList.module.css'
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const allContacts = useSelector(selectContacts);
+
+  const contacts = allContacts.filter(contact => {
+    return contact.name.startsWith();
+  });
 
   const handleDelete = (contactId) => {
-    dispatch(deleteContact(contactId)); 
+    dispatch(deleteContact(contactId));
   };
 
   return (
