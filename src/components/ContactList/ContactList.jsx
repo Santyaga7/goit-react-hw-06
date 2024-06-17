@@ -13,17 +13,19 @@ const ContactList = () => {
   };
 
   return (
-    <ul className={css.contactContainer}>
-      {contacts.map(contact => (
-        <Contact
-          key={contact.id}
-          name={contact.name}
-          number={contact.number}
-          id={contact.id}
-          onDelete={() => handleDelete(contact.id)} 
-        />
-      ))}
-    </ul>
+   <ul className={css.contactContainer}>
+        {contacts
+          .filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
+          .map(contact => (
+            <Contact
+              key={contact.id}
+              name={contact.name}
+              number={contact.number}
+              id={contact.id}
+              onDelete={() => handleDelete(contact.id)} 
+            />
+          ))}
+      </ul>
   );
 };
 
