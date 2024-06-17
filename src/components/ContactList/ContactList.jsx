@@ -7,13 +7,15 @@ import css from './ContactList.module.css'
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const [filter, setFilter] = useState(''); // Локальное состояние для фильтра
 
   const handleDelete = (contactId) => {
     dispatch(deleteContact(contactId)); 
   };
 
   return (
-   <ul className={css.contactContainer}>
+    <div>
+      <ul className={css.contactContainer}>
         {contacts
           .filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
           .map(contact => (
@@ -26,6 +28,7 @@ const ContactList = () => {
             />
           ))}
       </ul>
+    </div>
   );
 };
 
