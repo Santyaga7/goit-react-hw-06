@@ -16,13 +16,6 @@ const SearchBox = () => {
   return (
     <div>
       <p className={css.searchLabel}>Find contacts by name</p>
-      <input 
-        className={css.searchBox} 
-        type="text" 
-        value={filterValue} 
-        onChange={handleFilterChange} 
-        id={searchBoxId} 
-      />
     </div>
   );
 };
