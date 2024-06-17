@@ -4,26 +4,27 @@ import Contact from '../Contact/Contact';
 import { deleteContact, selectContacts } from '../../redux/contactsSlice';
 import css from './ContactList.module.css'
 
-export default function ContactList() {
+const ContactList = () => {
+  const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectNameFilter);
 
-  const filteredContacts = useMemo(() => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  }, [contacts, filter]);
+  const handleDelete = (contactId) => {
+    dispatch(deleteContact(contactId)); 
+  };
 
   return (
-    <ul className={css.list}>
-      {filteredContacts.map(item => (
-        <li key={item.id}>
-          <Contact item={item} />
-        </li>
+    <ul className={css.contactContainer}>
+      {contacts.map(contact => (
+        <Contact
+          key={contact.id}
+          name={contact.name}
+          number={contact.number}
+          id={contact.id}
+          onDelete={() => handleDelete(contact.id)} 
+        />
       ))}
     </ul>
   );
-}
+};
+
 export default ContactList;
-
-
