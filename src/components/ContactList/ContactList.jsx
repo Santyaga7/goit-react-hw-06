@@ -7,9 +7,10 @@ import css from './ContactList.module.css'
 const ContactList = () => {
   const dispatch = useDispatch();
   const allContacts = useSelector(selectContacts);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const contacts = allContacts.filter(contact => {
-    return contact.name.startsWith();
+  const filteredContacts = allContacts.filter(contact => {
+    return contact.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const handleDelete = (contactId) => {
@@ -17,18 +18,27 @@ const ContactList = () => {
   };
 
   return (
-    <ul className={css.contactContainer}>
-      {contacts.map(contact => (
-        <Contact
-          key={contact.id}
-          name={contact.name}
-          number={contact.number}
-          id={contact.id}
-          onDelete={() => handleDelete(contact.id)} 
-        />
-      ))}
-    </ul>
+    <div>
+      <input
+        type="text"
+        placeholder="Search contacts..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <ul className={css.contactContainer}>
+        {filteredContacts.map(contact => (
+          <Contact
+            key={contact.id}
+            name={contact.name}
+            number={contact.number}
+            id={contact.id}
+            onDelete={() => handleDelete(contact.id)} 
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
+
 
 export default ContactList;
