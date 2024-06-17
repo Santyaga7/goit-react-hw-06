@@ -5,15 +5,14 @@ import SearchBox from "./components/SearchBox/SearchBox";
 import { addContact, deleteContact } from "./redux/contactsSlice";
 import { changeFilter } from "./redux/filtersSlice";
 
-const App = () => {
+function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={handleAddContact} />
-      <SearchBox onFilter={handleFilterChange} />
-      <ContactList onDelete={handleDeleteContact} />
+      <ContactsForm />
+      <SearchBox />
+      <ContactList />
     </div>
-  );
-};
-
-export default App;
+  )
+}
+export default App
