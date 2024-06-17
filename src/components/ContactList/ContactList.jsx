@@ -6,39 +6,25 @@ import css from './ContactList.module.css'
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const allContacts = useSelector(selectContacts);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredContacts = allContacts.filter(contact => {
-    return contact.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  const contacts = useSelector(selectContacts);
 
   const handleDelete = (contactId) => {
-    dispatch(deleteContact(contactId));
+    dispatch(deleteContact(contactId)); 
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search contacts..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <ul className={css.contactContainer}>
-        {filteredContacts.map(contact => (
-          <Contact
-            key={contact.id}
-            name={contact.name}
-            number={contact.number}
-            id={contact.id}
-            onDelete={() => handleDelete(contact.id)} 
-          />
-        ))}
-      </ul>
-    </div>
+    <ul className={css.contactContainer}>
+      {contacts.map(contact => (
+        <Contact
+          key={contact.id}
+          name={contact.name}
+          number={contact.number}
+          id={contact.id}
+          onDelete={() => handleDelete(contact.id)} 
+        />
+      ))}
+    </ul>
   );
 };
-
 
 export default ContactList;
