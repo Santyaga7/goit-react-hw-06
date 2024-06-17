@@ -6,20 +6,6 @@ import { addContact, deleteContact } from "./redux/contactsSlice";
 import { changeFilter } from "./redux/filtersSlice";
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  const handleAddContact = (newContact) => {
-    dispatch(addContact(newContact));
-  };
-
-  const handleDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId));
-  };
-
-  const handleFilterChange = (filter) => {
-    dispatch(changeFilter(filter));
-  };
-
   return (
     <div>
       <h1>Phonebook</h1>
