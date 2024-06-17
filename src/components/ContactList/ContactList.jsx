@@ -7,7 +7,7 @@ import css from './ContactList.module.css';
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const [filter, setFilter] = useState(''); // Локальное состояние для фильтра
+  const [filter, setFilter] = useState('');
 
   const handleDelete = (contactId) => {
     dispatch(deleteContact(contactId)); 
