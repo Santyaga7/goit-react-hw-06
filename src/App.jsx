@@ -6,14 +6,19 @@ import { addContact, deleteContact, selectContacts } from "./redux/contactsSlice
 import { changeFilter, selectNameFilter } from "./redux/filtersSlice";
 
 function App() {
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactsForm />
+
+      <ContactForm />
+
       <SearchBox />
+
       <ContactList />
     </div>
-  )
+  );
 }
-export default App
+
+export default App;
 
