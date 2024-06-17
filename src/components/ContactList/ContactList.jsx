@@ -17,7 +17,7 @@ const ContactList = () => {
     <div>
       <input
         type="text"
-        placeholder="Фильтр по имени"
+        placeholder="Find contacts by name"
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
       />
