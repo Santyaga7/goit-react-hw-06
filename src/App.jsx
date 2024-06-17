@@ -1,18 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
-import { addContact, deleteContact } from "./redux/contactsSlice";
-import { changeFilter } from "./redux/filtersSlice";
+import { addContact, deleteContact, selectContacts } from "./redux/contactsSlice";
+import { changeFilter, selectNameFilter } from "./redux/filtersSlice";
 
-function App() {
+const App = () => {
+
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactsForm />
-      <SearchBox />
-      <ContactList />
+      <ContactForm onAddContact={handleAddContact} />
+      <SearchBox value={filter} onFilter={handleFilterChange} />
+      <ContactList contacts={filteredContacts} onDelete={handleDeleteContact} />
     </div>
-  )
-}
-export default App
+  );
+};
+
+export default App;
