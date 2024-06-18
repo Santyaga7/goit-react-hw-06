@@ -1,6 +1,5 @@
-.contactContainer {
+.listUser {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
 }

@@ -1,41 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Contact from '../Contact/Contact';
-import { deleteContact, selectContacts } from '../../redux/contactsSlice';
-import css from './ContactList.module.css';
+import { useSelector } from "react-redux"
+
+import Contact from "../Contact/Contact"
+import css from './ContactList.module.css'
+
+import { selectContacts } from "../../redux/contactsSlice"
+import { selectNameFilter } from "../../redux/filtersSlice"
+
 
 const ContactList = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const [filter, setFilter] = useState('');
-
-  const handleDelete = (contactId) => {
-    dispatch(deleteContact(contactId)); 
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Find contacts by name"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-      />
-      <ul className={css.contactContainer}>
-        {contacts
-          .filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
-          .map(contact => (
-            <Contact
-              key={contact.id}
-              name={contact.name}
-              number={contact.number}
-              id={contact.id}
-              onDelete={() => handleDelete(contact.id)} 
-            />
-          ))}
-      </ul>
-    </div>
-  );
-};
-
-export default ContactList;
+    const contacts = useSelector(selectContacts)
+    const filterName = useSelector(selectNameFilter)
+console.log(contacts);
+    const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filterName.toLowerCase()));
+    return (
+        <ul className={css.listUser}>
+            {filteredContacts.map(contact => (
+                <li key={contact.id}>
+                    <Contact contact={contact } />  
+               </li> 
+            ))}
+        </ul>
+            )
+}
+export default ContactList
+ 
